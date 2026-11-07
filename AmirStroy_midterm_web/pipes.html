@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A simple guide to PPR pipes with a calculator that counts how many pipes you need.">
+  <meta name="theme-color" content="#E8EFEC">
+  <title>PPR pipes: AmirStroy</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23B5842F'/%3E%3Ccircle cx='16' cy='16' r='10' fill='%230E5A4E'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23E8EFEC'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg site-nav" aria-label="Main menu">
+        <a class="navbar-brand" href="index.html"><span class="logo-mark" aria-hidden="true"></span>AmirStroy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Open menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav ms-lg-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="catalog.html">Catalog</a></li>
+          <li class="nav-item"><a class="nav-link active" href="pipes.html" aria-current="page">PPR pipes</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">Plumber</a></li>
+          <li class="nav-item"><a class="nav-link" href="history.html">Order history</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacts.html">Cart <span class="cart-badge" id="cart-count" hidden>0</span></a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <div class="page-head">
+        <h1>PPR pipes, explained simply</h1>
+        <p>Never bought plumbing pipes before? Here is everything you need to choose the right ones in two minutes.</p>
+      </div>
+
+      <section class="block pt-0" aria-labelledby="h-basics">
+        <h2 class="visually-hidden" id="h-basics">The basics</h2>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="panel h-100">
+              <h3>What is PPR?</h3>
+              <p class="mb-0">A plastic pipe for water in homes. It is light, never rusts, and the pieces are joined by heating them with a small welding iron: no glue and no threads. That is why it is the most common choice for new water lines.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="panel h-100">
+              <h3>Hot or cold water? Look at «PN»</h3>
+              <p class="mb-0">PN shows how much pressure the pipe can take: the higher the number, the thicker the wall. <strong>PN20</strong> is the safe choice for both hot and cold water and for heating. Thinner pipes like PN10 are for cold water only. Pipes with a glass-fibre layer expand less when hot.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="panel h-100">
+              <h3>Which size do I need?</h3>
+              <p class="mb-0">The size is the outer width in millimeters, written with the sign Ø. For one tap, a toilet or a washing machine take <strong>Ø20</strong>. For the main line of a whole apartment or small house take <strong>Ø32</strong>. Bigger sizes are for large houses and heating. The table below shows each size.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="panel h-100">
+              <h3>How much do I buy?</h3>
+              <p class="mb-0">Pipes are sold in 4 meter lengths. Measure the route from the water source to the tap and add about 10% for cuts, or let the calculator below do it. You will also need fittings (elbows, tees, couplings): call us and we will count them for you.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="h-calc">
+        <h2 id="h-calc">Pipe calculator</h2>
+        <div class="panel calculator">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label" for="calc-size">Pipe size</label>
+              <select class="form-select" id="calc-size"></select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label" for="calc-length">Route length, meters</label>
+              <input class="form-control" id="calc-length" type="text" inputmode="decimal" placeholder="For example 12" aria-describedby="calc-length-error" autocomplete="off">
+              <div class="invalid-feedback" id="calc-length-error"></div>
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="calc-reserve" checked>
+                <label class="form-check-label" for="calc-reserve">Add 10% for cuts</label>
+              </div>
+            </div>
+          </div>
+          <p class="calc-result" id="calc-result" aria-live="polite">Enter the length of your route to see how many pipes you need.</p>
+          <button class="btn btn-main" type="button" id="calc-add" disabled>Add to cart</button>
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="h-list">
+        <h2 id="h-list">Price list</h2>
+        <p class="text-muted">PN20 pipes, Kontur brand. The price is per meter and per full 4 meter length.</p>
+        <div class="table-wrap">
+          <div class="table-responsive">
+            <table class="table price-table align-middle mb-0">
+              <caption class="visually-hidden">PPR PN20 pipe prices by size</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Size</th>
+                  <th scope="col">Per meter</th>
+                  <th scope="col">4 m length</th>
+                  <th scope="col">Stock</th>
+                </tr>
+              </thead>
+              <tbody id="pipe-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="h-faq">
+        <h2 id="h-faq">Questions beginners ask</h2>
+        <div class="faq" id="faq"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="mb-2">AmirStroy, plumbing for your home. Prices in tenge are approximate: we confirm stock and price when you order.</p>
+      <p class="mb-0 credits">Credits: product photos from Yandex Images; fonts Onest and Unbounded from Google Fonts; Bootstrap 5.3.3; jQuery 3.7.1; the code was written with the help of Claude, an AI assistant by Anthropic.</p>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/cards.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/pipes.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Plumbing catalog with search, filters, prices in tenge, stock status and ratings.">
+  <meta name="theme-color" content="#E8EFEC">
+  <title>Catalog: AmirStroy</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23B5842F'/%3E%3Ccircle cx='16' cy='16' r='10' fill='%230E5A4E'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23E8EFEC'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg site-nav" aria-label="Main menu">
+        <a class="navbar-brand" href="index.html"><span class="logo-mark" aria-hidden="true"></span>AmirStroy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Open menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav ms-lg-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="catalog.html" aria-current="page">Catalog</a></li>
+          <li class="nav-item"><a class="nav-link" href="pipes.html">PPR pipes</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">Plumber</a></li>
+          <li class="nav-item"><a class="nav-link" href="history.html">Order history</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacts.html">Cart <span class="cart-badge" id="cart-count" hidden>0</span></a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <div class="page-head">
+        <h1>Catalog</h1>
+        <p>Prices in tenge. A dashed card means the item is out of stock right now. Search, filter and sort the list, then add what you need to the cart.</p>
+
+        <div class="tools">
+          <div class="search-box">
+            <label class="form-label" for="search">Search</label>
+            <input class="form-control" id="search" type="search" placeholder="Name, model or word, for example Ariston" autocomplete="off">
+          </div>
+          <div>
+            <label class="form-label" for="sort">Sort by</label>
+            <select class="form-select" id="sort">
+              <option value="default">Default</option>
+              <option value="cheap">Price: low to high</option>
+              <option value="expensive">Price: high to low</option>
+              <option value="rating">Best rated</option>
+            </select>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="only-stock">
+            <label class="form-check-label" for="only-stock">In stock only</label>
+          </div>
+        </div>
+
+        <div class="chips" role="group" aria-label="Catalog sections">
+          <button class="chip active" type="button" data-category="all" aria-pressed="true">All</button>
+          <button class="chip" type="button" data-category="faucets" aria-pressed="false">Faucets</button>
+          <button class="chip" type="button" data-category="toilets" aria-pressed="false">Toilets</button>
+          <button class="chip" type="button" data-category="heaters" aria-pressed="false">Water heaters</button>
+          <button class="chip" type="button" data-category="pipes" aria-pressed="false">PPR pipes</button>
+        </div>
+      </div>
+
+      <section class="block pt-0" aria-labelledby="h-products">
+        <h2 class="visually-hidden" id="h-products">Products</h2>
+        <p class="result-count" id="result-count" aria-live="polite"></p>
+        <div class="row g-4" id="product-grid"></div>
+
+        <div class="empty-result" id="empty-result" role="status" hidden>
+          <p class="empty-title">Nothing found</p>
+          <p id="empty-text"></p>
+          <button class="btn btn-ghost" type="button" id="reset-filters">Clear search and filters</button>
+        </div>
+
+        <p class="mt-4"><a href="pipes.html">New to PPR pipes? Read the guide and use the pipe calculator</a></p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="mb-2">AmirStroy, plumbing for your home. Prices in tenge are approximate: we confirm stock and price when you order.</p>
+      <p class="mb-0 credits">Credits: product photos from Yandex Images; fonts Onest and Unbounded from Google Fonts; Bootstrap 5.3.3; jQuery 3.7.1; the code was written with the help of Claude, an AI assistant by Anthropic.</p>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/cards.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/catalog.js"></script>
+</body>
+</html>

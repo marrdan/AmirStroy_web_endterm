@@ -1,0 +1,550 @@
+
+:root {
+  --mist: #E8EFEC;        /* фон страницы */
+  --paper: #F6F9F7;       /* карточки, меню */
+  --ink: #15302C;         /* основной текст */
+  --muted: #5A6F6A;       /* вторичный текст */
+  --green: #0E5A4E;       /* патина: кнопки, акценты */
+  --green-dark: #0A463D;
+  --green-soft: #D3E5DE;
+  --brass: #B5842F;       /* латунь: линии и рамки */
+  --brass-dark: #7E5A1A;
+  --brass-soft: #F0E2C0;
+  --water: #3FA7BE;       /* вода: только фокус и капля */
+  --line: #C3D2CD;
+  --out: #8A9A95;
+
+  --font-head: "Unbounded", system-ui, sans-serif;
+  --font-body: "Onest", system-ui, sans-serif;
+
+  /* переопределяем переменные Bootstrap */
+  --bs-body-bg: var(--mist);
+  --bs-body-color: var(--ink);
+  --bs-body-font-family: var(--font-body);
+  --bs-border-color: var(--line);
+}
+
+/* ---------- 2. Основа ---------- */
+body {
+  background: var(--mist);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.55;
+}
+
+h1, h2 {
+  font-family: var(--font-head);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+h1 { font-size: clamp(2rem, 1.2rem + 3.6vw, 3.5rem); }
+h2 { font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2rem); margin-bottom: 1.25rem; }
+
+a { color: var(--green); }
+a:hover { color: var(--green-dark); }
+:focus-visible { outline: 3px solid var(--water); outline-offset: 2px; }
+
+.block { padding: 2.25rem 0; }
+.nowrap { white-space: nowrap; }
+
+.page-head { padding: 2.5rem 0 1rem; }
+.page-head p { max-width: 40rem; color: var(--muted); }
+
+/* ---------- 3. Меню (Bootstrap navbar) ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 12px 0;
+  background: var(--mist);
+}
+.site-nav {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 0.4rem 0.6rem 0.4rem 1rem;
+}
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+/* логотип: срез трубы */
+.logo-mark {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--paper) 0 28%, var(--green) 30% 60%, var(--brass) 62%);
+}
+.site-nav .navbar-nav .nav-link {
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+}
+.site-nav .navbar-nav .nav-link:hover { background: var(--green-soft); }
+.site-nav .navbar-nav .nav-link.active { background: var(--green); color: #fff; }
+.navbar-toggler { border-color: var(--line); }
+
+/* ---------- 4. Кнопки ---------- */
+.btn {
+  border-radius: 999px;
+  font-weight: 500;
+  padding: 0.55rem 1.3rem;
+}
+.btn-main {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--green);
+  --bs-btn-border-color: var(--green);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--green-dark);
+  --bs-btn-hover-border-color: var(--green-dark);
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--green-dark);
+  --bs-btn-active-border-color: var(--green-dark);
+}
+.btn-ghost {
+  --bs-btn-color: var(--green);
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: var(--green);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--green);
+  --bs-btn-hover-border-color: var(--green);
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--green-dark);
+  --bs-btn-active-border-color: var(--green-dark);
+}
+
+/* ---------- 5. Главная: герой (Grid) ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem 0 2rem;
+}
+.hero-text { max-width: 34rem; margin: 1.25rem 0 0; color: var(--muted); font-size: 1.1rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+.hero-art { width: 100%; max-width: 380px; justify-self: center; }
+
+/* капля: единственная анимация на сайте */
+.drop { transform-box: fill-box; transform-origin: 50% 0; }
+.ripple { transform-box: fill-box; transform-origin: center; opacity: 0; transform: scale(0); }
+@media (prefers-reduced-motion: no-preference) {
+  .drop { animation: drip 3s ease-in infinite; }
+  .ripple { animation: ripple 3s ease-out infinite; }
+}
+@keyframes drip {
+  0%   { transform: translateY(-6px) scale(0.2); opacity: 0; }
+  15%  { transform: none; opacity: 1; }
+  35%  { transform: none; opacity: 1; }
+  72%  { transform: translateY(70px); opacity: 1; }
+  73%, 100% { transform: translateY(70px); opacity: 0; }
+}
+@keyframes ripple {
+  0%, 71% { transform: scale(0); opacity: 0; }
+  72%     { transform: scale(0.1); opacity: 0.9; }
+  100%    { transform: scale(1); opacity: 0; }
+}
+
+/* ---------- 6. Главная: категории (Grid, кирпичная кладка) ---------- */
+.cats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+.cat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 150px;
+  padding: 1.25rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.cat:hover { border-color: var(--brass); color: var(--ink); }
+.cat:nth-child(1), .cat:nth-child(4) { grid-column: span 3; }
+.cat:nth-child(2), .cat:nth-child(3) { grid-column: span 2; }
+.cat-name { font-family: var(--font-head); font-size: 1.25rem; }
+.cat-meta { color: var(--muted); }
+
+/* ---------- 7. Как заказать ---------- */
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+.steps li {
+  flex: 1 1 220px;
+  counter-increment: step;
+  padding: 1.1rem 1.25rem;
+  background: var(--paper);
+  border-left: 6px solid var(--brass);
+  border-radius: 6px 16px 16px 6px;
+}
+.steps li::before {
+  content: counter(step) ".";
+  margin-right: 0.4rem;
+  font-family: var(--font-head);
+  color: var(--brass-dark);
+}
+
+/* ---------- 8. Карточка товара ---------- */
+.product {
+  height: 100%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  aspect-ratio: 4 / 3;
+  margin: 0.6rem 0.6rem 0;
+  border-radius: 10px;
+  background: var(--green-soft);
+  color: var(--green);
+  text-align: center;
+}
+.photo-code { font-family: var(--font-head); font-size: 1.1rem; padding: 0 0.5rem; }
+.photo-note { font-size: 0.8rem; color: var(--muted); }
+.photo { position: relative; overflow: hidden; }
+/* фото лежит поверх заглушки и всегда обрезается под одну форму 4:3 */
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo img[src=""] { display: none; }
+
+.product .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem;
+}
+.product-name { margin: 0.4rem 0 0; font-size: 1rem; font-weight: 600; line-height: 1.3; }
+.product-meta { margin: 0; color: var(--muted); font-size: 0.9rem; }
+.buy { display: flex; flex-direction: column; gap: 0.6rem; margin-top: auto; padding-top: 0.8rem; }
+.price { margin: 0; font-family: var(--font-head); font-weight: 500; font-size: 1.1rem; white-space: nowrap; }
+
+/* наличие: плашка с точкой */
+.stock {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--green-soft);
+  color: var(--green-dark);
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.stock::before { content: ""; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: currentColor; }
+.stock-few { background: var(--brass-soft); color: var(--brass-dark); }
+
+/* товара нет: пунктир и штриховка, как пустая полка */
+.stock-out { background: transparent; color: var(--muted); border-color: var(--out); border-style: dashed; }
+.stock-out::before { background: transparent; border: 2px solid currentColor; }
+
+.is-out .product { background: transparent; border-style: dashed; border-color: var(--out); }
+.is-out .photo {
+  background: repeating-linear-gradient(135deg, transparent 0 8px, rgba(138, 154, 149, 0.3) 8px 10px);
+  color: var(--muted);
+}
+.is-out .product-name, .is-out .price { color: var(--muted); }
+.is-out .photo img { filter: grayscale(1); opacity: 0.45; }
+
+/* ---------- 9. Каталог ---------- */
+.tools { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 1rem 1.5rem; margin-top: 1.25rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+.chip {
+  padding: 0.35rem 0.95rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.chip:hover { border-color: var(--brass); color: var(--ink); }
+.form-check-input:checked { background-color: var(--green); border-color: var(--green); }
+.form-check-input:focus { border-color: var(--green); box-shadow: 0 0 0 0.2rem rgba(14, 90, 78, 0.25); }
+
+/* ---------- 10. Прайс (таблица) ---------- */
+.table-wrap {
+  padding: 0.5rem 1rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.price-table {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--ink);
+  --bs-table-border-color: var(--line);
+}
+.price-table th, .price-table td { padding: 0.9rem 0.75rem; }
+.price-table thead th { border-bottom: 2px solid var(--brass); font-weight: 600; white-space: nowrap; }
+.price-table tbody tr:last-child th, .price-table tbody tr:last-child td { border-bottom: 0; }
+.price-table .is-out th, .price-table .is-out td { color: var(--muted); }
+
+/* ---------- 11. Заявка (форма) ---------- */
+.panel {
+  padding: 1.5rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+.panel h2 { font-size: 1.4rem; }
+.panel-green { background: var(--green); border-color: var(--green); color: #fff; }
+.panel-green h2 { color: #fff; }
+.info dt { font-weight: 600; }
+.info dd { margin: 0 0 1rem; color: rgba(255, 255, 255, 0.82); }
+.info dd:last-child { margin-bottom: 0; }
+.form-label { font-weight: 500; }
+.form-control, .form-select {
+  padding: 0.65rem 0.9rem;
+  background-color: var(--paper);
+  border-color: var(--line);
+  border-radius: 12px;
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 0.2rem rgba(14, 90, 78, 0.2);
+}
+
+/* ---------- 12. Подвал (Flexbox + Grid) ---------- */
+.site-footer {
+  margin-top: 3rem;
+  padding: 1.5rem 0 2rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- 12a. Рейтинг, услуги, подсказки, пустая история ---------- */
+/* звёзды без картинок и JS: ширина заливки берётся из --rating (0-5) */
+.rating { display: flex; align-items: center; gap: 0.45rem; margin: 0; font-size: 0.85rem; color: var(--muted); }
+.stars {
+  font-size: 1rem;
+  line-height: 1;
+  background: linear-gradient(90deg, var(--brass) calc(var(--rating, 0) / 5 * 100%), var(--line) 0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.stars::before { content: "★★★★★"; }
+.is-out .stars { opacity: 0.6; }
+
+.price-quote { font-family: var(--font-body); font-weight: 600; font-size: 1rem; white-space: normal; }
+.band { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
+.band h2 { margin-bottom: 0.4rem; }
+.band p { margin: 0; color: rgba(255, 255, 255, 0.85); }
+.panel h3 { margin-bottom: 0.6rem; font-family: var(--font-head); font-weight: 500; font-size: 1.05rem; }
+.price-table th small { display: block; margin-top: 0.15rem; font-weight: 400; font-size: 0.8rem; color: var(--muted); }
+.empty-row td { padding: 2.25rem 0.75rem; text-align: center; color: var(--muted); }
+
+/* ---------- 13. Адаптив (свои media queries) ---------- */
+@media (max-width: 767.98px) {
+  .hero { grid-template-columns: 1fr; gap: 1rem; padding-top: 1.5rem; }
+  .hero-art { max-width: 240px; justify-self: start; }
+  .cats { grid-template-columns: 1fr; }
+  .cat:nth-child(n) { grid-column: auto; min-height: 110px; }
+  .page-head { padding-top: 1.5rem; }
+}
+@media (max-width: 575.98px) {
+  .panel { padding: 1.1rem; }
+  .table-wrap { padding: 0.25rem 0.5rem; }
+  .price-table th, .price-table td { padding: 0.75rem 0.4rem; font-size: 0.9rem; }
+  .price-table thead th { white-space: normal; }
+  .price-table th small { font-size: 0.72rem; }
+  .price-table .stock { padding: 0.15rem 0.5rem; font-size: 0.75rem; gap: 0.3rem; }
+}
+
+/* ---------- 14. Endterm: корзина, поиск, калькулятор, формы ---------- */
+
+/* счётчик корзины в меню */
+.cart-badge {
+  display: inline-block;
+  min-width: 1.4rem;
+  margin-left: 0.25rem;
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  background: var(--brass);
+  color: #fff;
+  font-size: 0.8rem;
+  line-height: 1.4rem;
+  text-align: center;
+}
+
+/* наведение на карточки и кнопки */
+.product { transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+.product:hover { transform: translateY(-4px); border-color: var(--brass); box-shadow: 0 10px 20px rgba(21, 48, 44, 0.1); }
+.is-out .product:hover { transform: none; box-shadow: none; border-color: var(--out); }
+.btn { transition: transform 0.15s, background-color 0.2s, color 0.2s; }
+.btn:hover:not(:disabled) { transform: translateY(-2px); }
+.btn:disabled { opacity: 0.55; }
+.btn-light:hover { color: var(--green-dark); }
+
+/* поиск и сортировка */
+.search-box { flex: 1 1 280px; max-width: 28rem; }
+.tools .form-select { min-width: 12rem; }
+.chip { font: inherit; cursor: pointer; transition: background-color 0.2s, border-color 0.2s; }
+.chip.active { background: var(--green); border-color: var(--green); color: #fff; }
+.chip.active:hover { color: #fff; }
+.result-count { margin-bottom: 1rem; color: var(--muted); }
+
+/* пустой результат */
+.empty-result {
+  padding: 2.5rem 1.5rem;
+  border: 2px dashed var(--out);
+  border-radius: 18px;
+  text-align: center;
+  color: var(--muted);
+}
+.empty-title { margin-bottom: 0.3rem; font-family: var(--font-head); font-size: 1.3rem; color: var(--ink); }
+
+/* сообщение внизу экрана и кнопка «наверх» */
+.toast-message {
+  display: none;
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  z-index: 40;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  padding: 0.75rem 1.25rem;
+  background: var(--green);
+  border-left: 6px solid var(--brass);
+  border-radius: 12px;
+  color: #fff;
+}
+.to-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 30;
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--brass);
+  color: #fff;
+  font-size: 1.3rem;
+  transition: background-color 0.2s;
+}
+.to-top:hover { background: var(--brass-dark); }
+
+/* ошибки и успех в форме (свои цвета вместо красного и зелёного Bootstrap) */
+.form-control.is-invalid, .form-select.is-invalid, .form-check-input.is-invalid {
+  border-color: #A3361F;
+  background-image: none;
+}
+.form-control.is-invalid:focus, .form-select.is-invalid:focus {
+  border-color: #A3361F;
+  box-shadow: 0 0 0 0.2rem rgba(163, 54, 31, 0.2);
+}
+.form-check-input.is-invalid:checked { background-color: #A3361F; }
+.form-check-input.is-invalid ~ .form-check-label { color: var(--ink); }
+.invalid-feedback { color: #A3361F; font-weight: 500; }
+.sent { margin-bottom: 1.5rem; border-left: 8px solid var(--brass); }
+.sent:focus { outline: none; }
+
+/* корзина */
+.cart-list { margin: 0; padding: 0; list-style: none; }
+.cart-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.cart-info { display: flex; flex-direction: column; min-width: 0; }
+.cart-price { color: var(--muted); font-size: 0.9rem; }
+.cart-qty { display: flex; align-items: center; gap: 0.5rem; }
+.qty-number { min-width: 1.5rem; text-align: center; font-weight: 600; }
+.qty-btn {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid var(--green);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--green);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.qty-btn:hover:not(:disabled) { background: var(--green); color: #fff; }
+.qty-btn:disabled { border-color: var(--line); color: var(--out); }
+.cart-line { min-width: 6rem; text-align: right; font-family: var(--font-head); font-size: 0.95rem; }
+.remove-btn { border: 0; background: transparent; color: #A3361F; text-decoration: underline; padding: 0.3rem; }
+.remove-btn:hover { color: var(--ink); }
+.cart-total { margin: 1rem 0 0; text-align: right; font-size: 1.15rem; }
+.cart-total strong { font-family: var(--font-head); font-weight: 500; }
+.cart-note { margin: 0.5rem 0 0; color: var(--muted); font-size: 0.9rem; text-align: right; }
+.cart-error { margin: 1rem 0 0; color: #A3361F; font-weight: 500; }
+.cart-empty { padding: 1rem 0; color: var(--muted); }
+
+/* калькулятор труб: главное «запоминающееся» решение сайта */
+.calculator { border-left: 8px solid var(--brass); }
+.calc-result {
+  margin: 1.25rem 0;
+  padding: 1rem 1.25rem;
+  background: var(--green-soft);
+  border-radius: 12px;
+  font-family: var(--font-head);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* аккордеон */
+.faq-item { margin-bottom: 0.75rem; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.faq-question {
+  position: relative;
+  width: 100%;
+  padding: 1rem 3rem 1rem 1.25rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-weight: 600;
+  text-align: left;
+  transition: background-color 0.2s;
+}
+.faq-question:hover { background: var(--green-soft); }
+.faq-question::after { content: "+"; position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); font-size: 1.4rem; color: var(--brass-dark); }
+.faq-question.open::after { content: "\2212"; }
+.faq-answer p { margin: 0; padding: 0 1.25rem 1.1rem; color: var(--muted); }
+
+/* история заказов */
+.order-items { margin: 0.3rem 0 0; padding-left: 1.1rem; color: var(--muted); font-size: 0.9rem; }
+.credits { font-size: 0.8rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .product, .btn { transition: none; }
+  .product:hover, .btn:hover:not(:disabled) { transform: none; }
+}
+
+@media (max-width: 575.98px) {
+  .cart-row { grid-template-columns: 1fr auto; }
+  .cart-line { text-align: left; }
+  .cart-total, .cart-note { text-align: left; }
+  .search-box { max-width: none; }
+  .tools .form-select { width: 100%; }
+  .to-top { right: 0.6rem; bottom: 0.6rem; }
+}
