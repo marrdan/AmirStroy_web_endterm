@@ -12,4 +12,4 @@ Plumbing goods shop (Web Technologies 1, Endterm project). Pure HTML, CSS, Boots
 - `js/index.js`, `catalog.js`, `pipes.js`, `services.js`, `checkout.js`, `history.js`: one file per page
 
 ## Credits
-Product photos: Yandex Images. Fonts: Onest and Unbounded (Google Fonts). Bootstrap 5.3.3, jQuery 3.7.1. Code written with the help of Claude (AI assistant by Anthropic).
+Product photos: Yandex Images. Fonts: Onest and Unbounded (Google Fonts). Bootstrap 5.3.3, jQuery 3.7
