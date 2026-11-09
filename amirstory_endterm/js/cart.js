@@ -56,7 +56,7 @@ function countCartItems() {
   return count;
 }
 
-// Сумма корзины
+
 function getCartTotal(cart) {
   let total = 0;
   for (let i = 0; i < cart.length; i++) {
@@ -75,8 +75,7 @@ function updateCartBadge() {
   badge.hidden = count === 0;
 }
 
-// Добавляет товар в корзину. Возвращает текст для сообщения.
-// item: { id, name, price, unit, max, isService }
+
 function addToCart(item, amount) {
   const cart = getCart();
   let found = null;

@@ -1,6 +1,4 @@
-// Главная: считаем данные для плиток категорий и показываем три товара из каталога.
 
-// Плитки категорий: сколько моделей и от какой цены
 const tiles = document.querySelectorAll(".cat[data-category]");
 for (let i = 0; i < tiles.length; i++) {
   const category = tiles[i].getAttribute("data-category");
